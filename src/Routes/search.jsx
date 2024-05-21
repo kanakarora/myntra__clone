@@ -9,7 +9,7 @@ const Search = ()=>{
     if(searchTerm === ""){
     return item;
     }
-    else if( item.item_name.toLowerCase().includes(searchTerm.toLowerCase())){
+    else if( item.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||  item.title.toLowerCase().includes(searchTerm.toLowerCase()) || item.category.toLowerCase().includes(searchTerm .toLowerCase()) ){
        return item ;
     }
   
@@ -19,15 +19,15 @@ const Search = ()=>{
    ) 
     
     return (
-        <main>
+        
            
-       <div className="items-container">
+       <div className="items-container container-fluid">
         {filteredCategory.length > 0 ? filteredCategory.map(item=>{
         return <DisplayItem item={item} key={item.id}/>}) :<p className="m-auto">no searches found</p>
         }
         
         </div>
-        </main> 
+       
     )
 }
 export default Search;

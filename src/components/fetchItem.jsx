@@ -16,16 +16,17 @@ const FetchItems = ()=>{
         const signal = controller.signal;
     
         
-        dispatch(HomeItemsActions.fetchingStarted());
-      
-        fetch("http://localhost:8080/items", { signal })
+    
+        fetch("https://dummyjson.com/products", { signal })
           .then((res) => res.json())
-          .then(({ items }) => {
+          .then((data) => {
+           
             dispatch(HomeItemsActions.fetchDone());
             dispatch(HomeItemsActions.fetchingFinished());
-            dispatch(HomeItemsActions.addInitialItems(items[0]));
+            dispatch(HomeItemsActions.addInitialItems(data.products));
           })
           .catch((err)=>{
+            
             console.error(`Download error ${err.message}`)
           })
          
@@ -33,7 +34,7 @@ const FetchItems = ()=>{
           controller.abort();
         };
       }, [fetchDone,dispatch]);
-   
+     
     return(
    <></>
     )

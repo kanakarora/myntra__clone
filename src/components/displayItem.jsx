@@ -1,17 +1,21 @@
 import {useDispatch,useSelector} from "react-redux";
 import {bagActions} from "../store/bagSlice";
 import { WishListSliceActions } from "../store/wishListSlice";
+import { FaHeart } from "react-icons/fa";
 import { GrAddCircle } from "react-icons/gr";
 import { AiFillDelete } from "react-icons/ai";
-import { FaRegHeart } from "react-icons/fa";
+import { IoMdHeartEmpty } from "react-icons/io";
+import { useState } from "react";
+
 const DisplayItem = ({item})=>{
     
-    
+    const [wishListItem,setWishListItem] = useState(false);
     const dispatch = useDispatch();
     const bagItems = useSelector(store=>store.bag);
+    
    
  
-    const elementFound = bagItems.indexOf(item.id)>=0;
+    const elementFound = bagItems.indexOf(item)>=0;
 
     const handleAddToBag = () => {
       dispatch(bagActions.addToBag(item));
@@ -22,27 +26,33 @@ const DisplayItem = ({item})=>{
       dispatch(bagActions.removeFromBag(item));
     };
     const handleAddToWishList = ()=>{
+      setWishListItem(!wishListItem);
       dispatch(WishListSliceActions.addTowishList(item));
     }
+    
 
 return (
     
-        <div className="item-container">
-      <img className="item-image" src={item.image} alt="item image"/>
-      <div className="rating">
-          {item.rating.stars} ⭐ | {item.rating.count}
-      </div>
-      <div className="company-name">{item.company}</div>
-      <div className="item-name">{item.item_name}</div>
+        <div className="item-container ">
+         <div className="item">
+      <img className="item-image" src={item.images[0]} alt="item image"/>
+     
+      <div className="company-name">{item.brand}</div>
+      <div className="item-name">{item.title}</div>
+      <div className="mt-2 text-secondary">
+        <span>{item.description}</span></div>
       <div className="price">
-          <span className="current-price">Rs {item.current_price}</span>
-          <span className="original-price">Rs {item.original_price}</span>
-          <span className="discount">{item.discount_percentage}%OFF</span>
+          <span className="current-price">Rs {item.price}</span>
+          
+          <span className="discount">{item.discountPercentage} %oFF</span>
+          <div className="rating mt-2">{item.rating} ⭐ </div>
+          <div className="text-dark mt-2">{item.stock} left</div>
       </div>
        
-     
-      <span onClick={handleAddToWishList}>
-     <FaRegHeart/>
+      <span onClick = {handleAddToWishList}>
+      
+  {!wishListItem ?<IoMdHeartEmpty style={{fontSize:"25px"}}/>:<FaHeart style={{color:"red" ,fontSize:"25px"}}/>}
+ 
       </span>
      
         {elementFound?
@@ -61,7 +71,10 @@ return (
         <GrAddCircle /> Add to Bag
       </button>
 }
-    </div>
+</div>
+</div>
+   
+
     
 )
 }

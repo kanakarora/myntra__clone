@@ -4,8 +4,7 @@ import Footer from '../components/footer';
 import FetchItems from '../components/fetchItem';
 import { useSelector } from 'react-redux';
 import LoadingSpinner from '../components/loadingSpinner';
-import $ from 'jquery';
-import Popper from 'popper.js';
+
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { useState } from 'react';
 
@@ -21,7 +20,9 @@ function App() {
     <div>
     <Header/>
     <FetchItems/>
+    <main className='mt-5 row'>
     {currentlyFetching ? <LoadingSpinner /> : <Outlet />}
+    </main>
     <Footer/>
     </div>
   );

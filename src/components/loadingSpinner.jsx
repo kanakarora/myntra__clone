@@ -1,7 +1,7 @@
 
     const LoadingSpinner = () => {
         return (
-          <div className="d-flex justify-content-center spinner">
+          <div className="d-flex justify-content-center spinner position-sticky">
             <div
               className="spinner-border"
               role="status"

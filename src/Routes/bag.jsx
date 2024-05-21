@@ -7,24 +7,41 @@ import OrderPlaced from "../components/orderPlaced";
 const Bag = () => {
   const [orderPlaced, setOrderPlaced] = useState(false);
   const bagItems = useSelector(store => store.bag);
-
+ 
+  
   return (
-    <main>
-      {orderPlaced ?
-        <OrderPlaced />
-        : (
-          <div class="bag-page">
-            <div class="bag-items-container">
-             
-              {bagItems.length > 0 ? bagItems.map(item => (<BagItem item={item} />)) : (<h3>bag is empty <br />hurry add your favriouts to bag</h3>)}
-            </div>
-            <BagSummery setOrderPlaced={setOrderPlaced} />
-
+    <>
+{(()=>{
+        if(bagItems.length>0){
+          if (!orderPlaced){
+                   return(
+          <div className="bag-page mt-3">
+          <div className="bag-items-container w-50">
+            {bagItems.map(item=>(<BagItem item={item} key={item.id}/>))}
           </div>
-        )
-      }
-    </main>)
+          <BagSummery  setOrderPlaced={setOrderPlaced} />
+          </div>
+      )}
+       else {
+        return <OrderPlaced/>
+       }
+          
+      
+    }
+    else if (bagItems.length === 0){
+     return (
+      <div className="w-50 mx-auto  mt-5">
+     <h3 className=" p-5">hurry add your favriouts to bag</h3>
+     </div>
+     )
+    }
+      
+    }
+        
+      )()}
+       </>
+    )
+   
 }
-
 
 export default Bag;

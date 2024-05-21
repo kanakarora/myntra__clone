@@ -11,8 +11,10 @@ const Header = ()=>{
      const handleSearchCategory = (e)=>{
         dispatch(searchActions.searchCategory(e.target.value))
      }
+
+  
 return(
-    <header className="navbar  navbar-expand-lg position-sticky top-0 ">
+    <header className="navbar  navbar-expand-lg position-sticky top-0 mb-2 " style={{zIndex:"1000"}}>
     <div className="container-fluid   nav-item-container ">
         <div className="header-section-first navbar-dark bg-dark text-info "> 
     <div className="logo_container">
@@ -56,12 +58,12 @@ return(
       
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <nav className="nav_bar navbar-nav">
-         <Link to="/search" className="nav-link">Men</Link>
-         <Link to="/search" className="nav-link">Women</Link>
-         <Link to="#" className="nav-link">Kids</Link>
-         <Link to="#" className="nav-link">Home & Living</Link>
-         <Link to="#" className="nav-link">Beauty</Link>
-         <Link to="#" className="nav-link">Studio <sup>New</sup></Link>
+         <Link to="products/laptops" className="nav-link">Laptops</Link>
+         <Link to="products/fragrances" className="nav-link">Fragrances</Link>
+         <Link to="products/skincare" className="nav-link">SkinCare</Link>
+         <Link to="products/groceries" className="nav-link">Groceries</Link>
+         <Link to="/products/home-decoration" className="nav-link">HomeDecoration</Link>
+         <Link to="products/smartphones">SmartPhones</Link>
      </nav>
     
          

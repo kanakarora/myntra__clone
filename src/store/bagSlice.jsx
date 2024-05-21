@@ -10,7 +10,8 @@ const bagSlice = createSlice({
         removeFromBag:(state,action)=>{
           
           return  state.filter(item=>item.id !== action.payload.id)
-        }
+        },
+       
     }
 })
 export const bagActions = bagSlice.actions;
